@@ -5,13 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Decimal to Binary Game</title>
   <link href="style.css" rel="stylesheet">
+  <link href="style-nibbles.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <div class="glassmorphism">
     <div id="gridSizeSelector" class="text-center grid-size-selector">
       <label for="gridSize" class="block text-lg font-medium text-white">Select grid size:</label>
-      <select id="gridSize" class="block w-full px-3 py-2 mt-1 text-white bg-white border border-gray-300 rounded-md bg-opacity-10">
+      <select id="gridSize" class="block w-full px-3 py-2 mt-1 text-white bg-white border border-gray-300 rounded-md bg-opacity-10" style="color: black;">
         <option value="4">4x4</option>
         <option value="5">5x5</option>
         <option value="6">6x6</option>
@@ -38,6 +39,51 @@
     </div>
   </div>
 
+  <div id="wrapper">
+    <h1>
+      Nibbles
+    </h1>
+    <h2>
+      A nibble is half a byte!
+    </h2>
+    <p>
+      Turn on the lightbulbs in the appropriate number places to convert the following randomly-generated decimal number (between 0 and 15) to binary.
+    </p>
+    <p id="number">
+      #
+    </p>
+    <div class="row">
+      <div id="lightbulb8" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place">8s place</span>
+      </div>
+      <div id="lightbulb4" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place">4s place</span>
+      </div>
+      <div id="lightbulb2" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place">2s place</span>
+      </div>
+      <div id="lightbulb1" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place">1s place</span>
+      </div>
+    </div>
+  
+    <button id="button">
+      Check my answer!
+    </button>
+    
+    <button id="new">
+      New number
+    </button>
+
+    <p id="result"></p>
+    
+  </div>
+
   <script src="script.js"></script>
+  <script src="script-nibbles.js"></script>
 </body>
 </html>

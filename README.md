@@ -49,3 +49,8 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 💖 Enjoy the Binary Game - where learning meets fun!
+
+
+# Nibbles: A Binary Game
+
+Practice your binary skills, a nibble at a time! (A byte is 8 bits, and a nibble is half a byte or four bits!)
