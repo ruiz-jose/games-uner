@@ -6,6 +6,7 @@
   <title>Decimal to Binary Game</title>
   <link href="style.css" rel="stylesheet">
   <link href="style-nibbles.css" rel="stylesheet">
+  <link href="style-conversion.css" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
@@ -82,8 +83,34 @@
     <p id="result"></p>
     
   </div>
+  <div id="main">
+		<p>
+		  <input type="radio" id="binary" name="state" value="binary" checked />
+		  <label for="binary">Binary to Decimal</label>
+		  <input type="radio" id="decimal" name="state" value="decimal" />
+		  <label for="decimal">Decimal to Binary</label>
+		</p>
+		<p>
+		  <input type="radio" id="small" name="range" value="small" checked />
+		  <label for="small">0-16 (base-10)</label>
+		  <input type="radio" id="large" name="range" value="large" />
+		  <label for="large">0-255 (base-10)</label>
+		</p>
+		<p>Your number is...</p>
+		<p id="number"></p>
+		<p>Convert it to <span id="state">decimal</span>!
+		</p>
+		<p><input type="text" id="input"/></p>
+		<p>
+			<button id="button">Submit</button>
+			<button id="new">New Number</button>
+		</p>
+		<p id="result"></p>
+		<p id="points"></p>
+	</div>
 
   <script src="script.js"></script>
   <script src="script-nibbles.js"></script>
+  <script src="script-conversion.js"></script>
 </body>
 </html>

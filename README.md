@@ -54,3 +54,7 @@ This project is open source and available under the [MIT License](LICENSE).
 # Nibbles: A Binary Game
 
 Practice your binary skills, a nibble at a time! (A byte is 8 bits, and a nibble is half a byte or four bits!)
+
+# Binary Game
+
+Binary game to practice converting between binary and decimal in HTML/CSS and JavaScript (ES6).
