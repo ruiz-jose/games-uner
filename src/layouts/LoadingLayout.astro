@@ -1,0 +1,34 @@
+---
+import BrakePad from 'astro-vtbot/components/BrakePad.astro';
+import LoadingIndicator from 'astro-vtbot/components/LoadingIndicator.astro';
+import VtBotDebug from 'astro-vtbot/components/VtBotDebug.astro';
+import MdxLayout from './MdxLayout.astro';
+interface Props {
+	title: string;
+	background: string;
+}
+const { title } = Astro.props;
+---
+
+<MdxLayout title={title}>
+	<VtBotDebug production slot="head" />
+	<BrakePad slot="head" production />
+	<LoadingIndicator top="5vh" src="/astro.svg" slot="head2" />
+	<div transition:animate="slide">
+		<h1>{title}</h1>
+		<h3>Open the browser console to see the debug information</h3>
+		<slot />
+		<div style="height:100vh"></div>
+	</div>
+</MdxLayout>
+
+<style is:global>
+	main {
+		margin: auto;
+		padding: 1.5rem;
+		max-width: 80ch;
+	}
+	html:view-transition(root) {
+		animation-duration: 0s;
+	}
+</style>

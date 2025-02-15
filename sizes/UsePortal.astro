@@ -1,0 +1,19 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import Portal from 'astro-vtbot/components/Portal.astro';
+import Mini from './Mini.astro';
+---
+
+<html>
+	<head>
+		<ClientRouter />
+		<Portal page="" />
+	</head>
+	<body>
+		<main transition:name="main">
+			<h1>Heading</h1>
+			<a href="/">Link</a>
+			<Mini />
+		</main>
+	</body>
+</html>

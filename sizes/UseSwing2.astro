@@ -1,0 +1,19 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { customSwing } from 'astro-vtbot/animations/swing';
+import Mini from './Mini.astro';
+const scope = customSwing('swing', {});
+---
+
+<html>
+	<head>
+		<ClientRouter />
+	</head>
+	<body>
+		<main transition:name="main">
+			<h1 data-astro-scope={scope}>Heading</h1>
+			<a href="/">Link</a>
+			<Mini />
+		</main>
+	</body>
+</html>

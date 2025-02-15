@@ -1,0 +1,49 @@
+---
+
+---
+
+<script>
+	import type {
+		TransitionBeforePreparationEvent,
+		TransitionBeforeSwapEvent,
+	} from 'astro:transitions/client';
+	import {
+		TRANSITION_AFTER_PREPARATION,
+		TRANSITION_BEFORE_PREPARATION,
+	} from 'astro:transitions/client';
+	import { TRANSITION_BEFORE_SWAP } from 'astro:transitions/client';
+
+	function afterPreparation(e: TransitionBeforePreparationEvent) {
+		const oldHeading = document.querySelector<HTMLElement>('main h1');
+		oldHeading && (oldHeading.style.viewTransitionName = '');
+		const next = document.querySelector<HTMLElement>(`.sidebar-pane a[href="${e.to.pathname}"]`);
+		next && (next.style.viewTransitionName = 'vtbot-hx');
+	}
+
+	function beforeSwap(e: TransitionBeforeSwapEvent) {
+		document.querySelectorAll<HTMLElement>('.sidebar-pane a').forEach((el) => {
+			el.style.viewTransitionName === 'vtbot-hx' && (el.style.viewTransitionName = '');
+		});
+		const newHeading = e.newDocument.querySelector<HTMLElement>('main h1');
+		newHeading && (newHeading.style.viewTransitionName = 'vtbot-hx');
+	}
+
+	let event: TransitionBeforePreparationEvent;
+	document.addEventListener(TRANSITION_BEFORE_PREPARATION, (e) => (event = e));
+	document.addEventListener(TRANSITION_AFTER_PREPARATION, () => afterPreparation(event));
+	document.addEventListener(TRANSITION_BEFORE_SWAP, beforeSwap);
+</script>
+<style is:global>
+	::view-transition-new(vtbot-hx),
+	::view-transition-group(vtbot-hx) {
+		animation-delay: 0.15s;
+		animation-duration: 0.45s;
+		animation-timing-function: ease-in;
+	}
+	::view-transition-new(vtbot-hx) {
+		animation-delay: 0.1s;
+	}
+	::view-transition-old(vtbot-hx) {
+		opacity: 0;
+	}
+</style>

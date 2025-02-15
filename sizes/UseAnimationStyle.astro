@@ -1,0 +1,19 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import AnimationStyle from 'astro-vtbot/animations/AnimationStyle.astro';
+import Mini from './Mini.astro';
+---
+
+<html>
+	<head>
+		<ClientRouter />
+		<AnimationStyle name="" />
+	</head>
+	<body>
+		<main transition:name="main">
+			<h1>Heading</h1>
+			<a href="/">Link</a>
+			<Mini />
+		</main>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+---
+
+---
+
+<script>
+	import { TRANSITION_BEFORE_SWAP } from 'astro:transitions/client';
+	import { SIDEBAR_CONTENT as STARLIGHT_SIDEBAR_CONTENT } from 'astro-vtbot/components/starlight/utils';
+
+	const initial = localStorage.getItem('vtbot-auto-collapse') === 'true';
+
+	document.addEventListener(TRANSITION_BEFORE_SWAP, (e) => {
+		e.viewTransition.finished.then(collapse).catch(() => {});
+	});
+
+	function collapse() {
+		if (document.querySelector(`${STARLIGHT_SIDEBAR_CONTENT}.vtbot-no-auto-collapse`)) return;
+
+		let current = document.querySelector(`${STARLIGHT_SIDEBAR_CONTENT} [aria-current="page"]`);
+		const keepOpen = new Set<HTMLDetailsElement>();
+		while ((current = current?.parentElement?.closest('details') ?? null)) {
+			keepOpen.add(current as HTMLDetailsElement);
+		}
+		document
+			.querySelectorAll<HTMLDetailsElement>(`${STARLIGHT_SIDEBAR_CONTENT} details`)
+			.forEach((detail) => {
+				if (!keepOpen.has(detail) && detail.open) {
+					detail.querySelectorAll('ul a').forEach((a) =>
+						a
+							.animate(
+								{
+									opacity: [0],
+									fontSize: ['0px'],
+								},
+								200
+							)
+							.finished.then(() => (detail.open = false))
+							.catch(() => {})
+					);
+				}
+			});
+	}
+
+	initial && collapse();
+</script>

@@ -1,0 +1,93 @@
+---
+layout: src/layouts/LibraryMdxLayout.astro
+title: vtbot integration
+---
+
+# Installing astro-vtbot
+
+<a href="https://www.npmjs.com/package/astro-vtbot" target="_blank"><img data-zoom-off style="margin:1ex 0" src="https://img.shields.io/npm/v/astro-vtbot?style=plastic&logo=npm&label=astro-vtbot&color=rgba(0%2C200%2C200%2C0.5))"/></a>
+
+`astro-vtbot` can be installed as a full [Astro integration](#installing-as-an-astro-integration) or as a [node package](#installing-as-a-node-package). Both ways install the package as a dependency in your project and allow you to import its components and scripts in your own pages. Installing as an integration in addition gives you access to **The Bag's DevToolbar App** with the ability to open the [Inspection Chamber](/library/InspectionChamber/) on any page during dev mode.
+
+If you're unsure, go with installing it as an integration!
+
+## Contents
+
+## Installing as an Astro integration
+
+Installing `astro-vtbot` as an Astro integration will install the package and it will add the Bag's devToolbar app that lets you open the InspectionChamber on any page during development mode.
+
+To install `astro-vtbot` as an Astro integration, run the `astro add` command in your project directory ...
+
+```bash
+npx astro add astro-vtbot
+```
+
+... and press the return key trice to answer the questions with "yes":
+
+```bash
+⚠ astro-vtbot is not an official Astro package.
+✔ Continue? … yes
+✔ Resolving with third party packages...
+
+  Astro will run the following command:
+  If you skip this step, you can always run it yourself later
+
+ ╭─────────────────────────────────╮
+ │ npm install astro-vtbot@^2.0.0  │
+ ╰─────────────────────────────────╯
+
+✔ Continue? … yes
+✔ Installing dependencies...
+
+  Astro will make the following changes to your config file:
+
+ ╭ astro.config.ts ──────────────────────────────╮
+ │ import { defineConfig } from 'astro/config';  │
+ │                                               │
+ │ import vtbot from 'astro-vtbot';              │
+ │                                               │
+ │ export default defineConfig({                 │
+ │   integrations: [vtbot()],                    │
+ │ });                                           │
+ ╰───────────────────────────────────────────────╯
+
+✔ Continue? … yes
+
+   success  Added the following integration to your project:
+  - astro-vtbot
+```
+
+If you have Astro's DevToolbar enabled, The Bag will show up as a new app there and will give you access to the InspectionChamber on every page without any further modification of your project.
+
+### Changes introduced with astro-vtbot 2.0
+
+Installing astro-vtbot as an integration used to add `vtbot`'s [`<LoadingIndicator />` component](../LoadingIndicator/) and [`<Linter />` component](../Linter/) to all pages that use Astro's `<ClientRouter />`. This behavior was changes in 2.0: None of these features will be added automatically anymore.
+
+ You can still get the former behavior by explicitly setting  the `loadingIndicator` option and/or the `autoLint` option of `vtbot` in your `astro.config` file to `true` (the default is now `false`):
+
+```js title="astro.config.mjs" {5}
+import { defineConfig } from "astro/config";
+import vtbot from "astro-vtbot";
+export default defineConfig({
+  integrations: [vtbot({
+		loadingIndicator: true, autoLint: true
+	})],
+});
+```
+:::note
+As of `astro-vtbot 2.0`, the `autoLint` and `loadingIndicator` parameters are **deprecated** and will be completely removed in a future version. To prepare for that change, do not set these parameters to true but include the `<Linter />` and `<LoadingIndicator/>` in your global Layout.astro or on dedicated pages as required.
+:::
+
+<style>{`aside{border: 1pt solid #642; border-radius: 8px; background-color: #321; padding: 2ex} .starlight-aside__title{font-size: 1.25rem; padding-left: 30px} aside svg{transform: scale(2) translateX(-10px)}`}</style>
+
+As an alternative to the loadingIndicator, you can also add the [`<ProgressBar />`](/library/LoadingIndicator/#alternative-2-use-the-loadingindicator--or-the-progressbar--component) component to your Layout.astro.
+
+
+## Installing as a node package
+
+To install `astro-vtbot` as a node package without the integration, run the following command in your project directory:
+
+```bash
+npm install astro-vtbot
+```

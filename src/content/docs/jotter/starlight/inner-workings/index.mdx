@@ -1,0 +1,80 @@
+---
+title: The Inner Workings
+description: How view transition support for Starlight works
+---
+import BoT from "/src/components/BoT.astro"
+import Logo from "/src/components/Logo.astro"
+
+This part of the Jotter tells the story behind The Bag's Starlight support. You might want to read on to learn more about the inner workings. If you just want to use the Starlight support, [head over to the guide](/jotter/starlight/guide/).
+
+## Mandatory actions
+
+Starlight doesn't support view transitions out of the box. If you want to enable them you have to make changes to the defaults. Some changes are non-negotiable. Read here what needs to be done to turn on view transitions on a Starlight site and what support is needed to make it work properly.
+
+### Hook into Starlight
+The minimum change a Starlight site needs in order to feature view transitions is the insertion of Astro's   `<ClientRouter />` component on all pages. We do this by [overriding Starlight's `<Head>` component](/jotter/starlight/inner-workings/integration/).
+
+### Keep App State Up to Date
+Next, we need a plan how to keep the app state up to date across navigation. Typically you would use Astro's lifecycle events to re-initialize dark mode, search, etc. after the swap.
+
+The Bag's Starlight support takes a different approach. Instead of re-initializing things, we [avoid outdated state](/jotter/starlight/inner-workings/app-state/) by letting elements survive from page to page. You could do this using `transition:persist`. But The Bag wouldn't be The Bag if it didn't [use The Bag's `ReplacementSwap`](/library/ReplacementSwap/) component for this.
+
+### Handle the Sidebar
+Since we keep the sidebar navigation instance across navigation, we need support to dynamically update the current page marker on navigation. Starlight has a button to open the page navigation on small devices. Because we do not refresh the whole page, we also need a way to automatically close that menu on navigation. Read more about [sidebar handling](/jotter/starlight/inner-workings/sidebar/).
+
+### Add `transition:*` Directives
+
+View transitions without interesting animations are only half of the battle. All you would need to do now is to add Astro's `transition:*` directives. The Bag [provides support to simplify the common cases](/jotter/starlight/inner-workings/transitions/).
+
+## Optional Part
+
+Some other features are really optional. Add them to your Starlight site as you wish.
+
+### Styling
+You might want to add some animations to make the main content change look more interesting. As you might have noticed, I added a rather fancy animation with blue lights! In dark mode at least. I also made the sidebar have a sliding current page indicator, which is not a CSS animation, but uses the Animation API.
+
+### Loading Indicator
+Next, you need a [loading indicator](/library/LoadingIndicator/) to show that the website has recognized the click and is doing something.
+
+### BorderControl
+The next step is only necessary if your website also contains pages that are not provided by Starlight and if those also use view transitions. I built [a reusable component](/library/BorderControl/) that detects view transitions that are targeted to the Starlight realm and forces a full page reload of the target on navigation. This is important to [properly re-initialize ReplacementSwap areas](/jotter/starlight/guide/#re-initialize-starlight-pages) when the area is entered with a view transition from the outside.
+
+### No more Annoying "Scrolling"
+If you have long pages, view transitions typically cause a lot of [pseudo-scrolling](/jotter/api/#scroll) when you navigate them from a scrolled down position. You know that this is no scrolling but just the morph animation of two large, only partially visible objects. The effect is less confusing, if you scroll both pages instantly to the top before the morphing starts.
+
+But surprise! Browsers are allowed to restrict the area that they copy when creating "screenshots" for the old image. The result can be that the old image shows nothing when you look at areas that were originally outside the viewport. You will be relieved to hear that the specification states that such areas must be filled with the background color. Life is good ;-)
+
+And similar effects can happen when you scroll the new image further down without waiting for the renderer to catch up.
+
+I am very happy with the solution I have now found: I slide the old page next to the new page so that the previously visible area is exactly at the same height as the target area of the new page. There is an [in-depth section](/jotter/starlight/inner-workings/transitions/#the-pseudo-scrolling-main-area) on it with interactive examples.
+
+The <BoT/> provides a [reusable component](/library/PageOffset/) for this use case. It can be used on Starlight and non-Starlight sites. If you want to use it with your Starlight site, see the [section in the guide](/jotter/starlight/guide/#eliminate-pseudo-scrolling) on how to extend your `<Head>` component.
+
+### Ordered Pages
+Starlight pages can be configured to display links to the previous and next page at the bottom of each page. Here "previous" and "next" mean: In the [order in which they appear in the page navigation](/jotter/starlight/guide/#page-order-directions). Wouldn't it be cool if the page transition animation also used these directions? I was thinking the same thing!
+
+### Additional Morph Effects
+I gave the headings on the pages view-transition-names to make the change of pages more entertaining. If you want you can add this to your site, too. See the guide on [how to](/jotter/starlight/guide/#additional-morph-effects) do so.
+
+
+
+## Minors
+
+The world will keep turning without or without what comes next.
+
+### Silent Catch
+~~If you click rapidly or use the arrow keys to navigate quickly through the browser history, you will interrupt ongoing transitions. This will result in error messages in the browser console because you usually haven't been paying attention to promises that could be rejected.~~ Better catch.
+
+Good news! [Starting from 4.7.1](https://github.com/withastro/astro/blob/main/packages/astro/CHANGELOG.md#471), Astro's view transitions will interrupt and abort ongoing transitions. So if you suffer from unhandled (in promise) errors first check whether your Astro version is current.
+
+As of now, I remove my original SilentCatch component and do not have further plans to offer a reusable component. Some things work themselves out after all.
+
+<style>{`
+	del {
+		text-decoration-style: solid wavy;
+		text-decoration-color: #888;
+	}
+`}</style>
+
+### Swap Sound
+Just can't do without an annoying sound when the view transition is running? This is the audio equivalent of a view transition. Choose from different swoops! Or how about a loud clockwork sound as the internal gears of the site turn and click? Now supported as a [reusable component](/library/SwapSound/).

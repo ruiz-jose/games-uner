@@ -1,0 +1,105 @@
+---
+layout: src/layouts/LibraryMdxLayout.astro
+title: Replacement Swap
+overview: /components/
+vtn: replswap-3
+---
+
+<h1 style="display: inline-block; view-transition-name: replswap-1"><span style="display:inline-block; view-transition-name:replswap-2; color: darkorange">↹</span> Replacement Swap</h1>
+
+`<ReplacementSwap/>` replaces elements that are explicitly marked for replacement.
+
+See also the [`<BorderControl />` component](/library/BorderControl/) if you mix pages with and without `<ReplacementSwap/>` on your site.
+
+## Contents
+
+## Why would I use this component?
+
+The `<ReplacementSwap/>` component is intended for situations in which you do not want to replace the entire `<body>` of your current page with a new version, but want to leave some parts of the old page untouched.
+
+A typical use case is a page layout with a changing `<main>` area surrounded by fixed `<header>`, `<footer>`, ... elements. The `<ReplacementSwap />` component allows you to  change only the DOM of the `<main>` area during navigation and leave the rest in the original DOM, including the event listeners and other JavaScript dependencies you have set up.
+
+Another important use case is the handling of persistent `<iframe>` elements and CSS animations:
+If you use **`transition:persist`** for **iframes or elements with CSS animations**, you may have noticed that they do not retain all their state during astro view transitions:
+
+* Iframes are reloaded on transitions and lose their content
+* CSS animations are interrupted during transitions and start from the beginning.
+
+This is because the standard `swap()` action of the `<ClientRouter />` replaces the entire `<body>` of your page with the body of the new page. Even if they are only copied: for the current DOM, it looks as if frames and elements with CSS animations have just been recreated.
+
+
+
+## Usage
+
+[Install astro-vtbot](../Installation/) in your project as an Astro integration with `npx astro add astro-vtbot` or as a node package with `npm install astro-vtbot`.
+
+Include the `<ReplacementSwap/>` component directly after the `<ClientRouter />` tag in the `<head>` of your page.
+
+Unlike the standard `swap()` action of the Astro view transitions, `<ReplacementSwap>` requires some configuration to work.  You need to tell the component what content to copy from the new page and where to paste it into the current page. Both places are defined by setting the appropriate HTML elements with the `data-vtbot-replace` property. Without such a configuration, `<ReplacementSwap/>` simply falls back to Astro's default behavior.
+
+
+This works best if your pages have a common layout, e.g. with fixed header, footer, sidebar etc. and a main area for the changing content of the pages. Assume you want to leave all parts except the main area untouched during navigation. You then label the `<main>` element with `data-vtbot-replace="some-identifier"` to instruct `<ReplacementSwap/>` to replace this part of the old page. If the new page also uses this layout, the `<main>` element of the new page is also marked with `data-vtbot-replace="some-identifier"`. The effect is that the new `<main>` element replaces the old one in the navigation. The parts outside the main element remain untouched.
+
+```astro title="Layout.astro" {3, 8, 13}
+---
+import ClientRouter from 'astro:transitions';
+import ReplacementSwap from 'astro-vtbot/components/ReplacementSwap.astro';
+---
+<html>
+  <head>
+    <ClientRouter />
+		<ReplacementSwap />
+		...
+	</head>
+	<body>
+    <header>...</header>
+		<main data-vtbot-replace="main"><slot /></main>
+		<footer>...<footer>
+	</body>
+</html>
+```
+
+Elements with CSS animations or iframes located outside the `<main>` element, e.g. in the `<header>` or `<footer>`,  are not affected by the replacement. They are not reloaded or interrupted during navigation.
+
+Setting `transition:persist` has no effect for `<ReplacementSwap />` when used outside the trees that are swapped in. Starting with v1.7.8 of `astro-vtbot`, `data-astro-transition-persist` and `data-astro-transition-persist-props` are handled inside the trees that are replaced. Semantics are the same as with Astro's default `swap()`. You can also use `transition:persist` and `transition:persist-props` directives. But be aware that Astro also creates an additional transition scope with a new transition group and image pair.
+
+## Multiple Replacements
+The elements with the same identifier do not have to be the same type of HTML element. Furthermore, the use of the `data-vtbot-replace` attribute is not limited to the main area of your page. You can define several areas of your page to be replaced by content from the next page. Use different names for the `data-vtbot-replace` attribute to control which old parts are to be replaced by which new content. The names you choose must be unique on each page.
+
+
+> **Caution:** Elements with `data-vtbot-replace` attribute must not be nested. (See the [`<Linter>` component](/library/Linter/) for automatic checks)
+
+
+
+If the old page and the new page have no replacement identifiers in common, `<ReplacementSwap>` falls back to the normal swap behavior of astro view transitions.
+
+### Properties
+
+The `<ReplacementSwap />` component can be told to preserve attributes of the `<html>` root element.
+The default swap removes the current attributes of the root element and replaces them with the attributes of the new page. If you want to keep some of the current attributes, you can specify them in the `rootAttributesToPreserve` property of the `<ReplacementSwap />` component. The attribute accepts a comma-separated list of attribute names. The default value is the empty string. The `rootAttributesToPreserve` property is optional.
+
+```astro title="Layout.astro" {4}
+<html>
+  <head>
+    <ClientRouter />
+		<ReplacementSwap rootAttributesToPreserve="data-theme, lang"/>
+		...
+```
+This feature is mainly meant to be used with dynamically added attributes, e.g. for theming.
+
+***Caution:*** If you use this property, values set in the new page will be ignored for the specified attributes. For example if you have a `lang` attribute on each page and set `rootAttributesToPreserve="lang"`, the value of the `lang` attribute of the current page is retained, even if the new page has a different value for the `lang` attribute.
+
+## An important note on styling
+
+The `<ReplacementSwap/>` component copies DOM trees from the new `<body>` into the current `<body>`. It also changes the `<head>` of the current page to reflect the `<head>` of the new page. This sounds good, but may have unexpected side effects:
+
+* The part of the page that remains untouched could lose its styling if the necessary CSS is not included in the `<head>` of the new page or in the remaining DOM of the current page.
+* In particular, if you use scoped styles in the untouched part of your page, they may not be provided by the new page.
+* If the tree being copied uses inline styles, these may need to be copied explicitly using appropriate `data-vtbot-replace` attributes.
+
+An easy way to ensure consistence is to define the part that is common to all pages in the sites base layout, together with the necessary CSS. This way, the common part is not affected by the replacement and the necessary CSS is always available.
+
+## Execution Order
+
+The `<ReplacementSwap />`component completely overwrites the `swap()` function, i.e. without ever calling the built-in implementation of `swap()`. The consequence of this, however, is that the [chaining pattern of `swap()` implementations](/jotter/astro/loader-swap/#extending-swap) is interrupted. It is therefore important that the ReplacementSwap component is the first to be added to the list of event listeners for astro:before-swap. To do this, it is sufficient to import the component as early as possible. This can also be done independently of any later use of the component.
+

@@ -1,0 +1,14 @@
+---
+import VtDemo from './vtdemo-[theme].astro';
+
+export async function getStaticPaths() {
+	return [{ params: { theme: 'light' } }, { params: { theme: 'dark' } }];
+}
+---
+
+<VtDemo />
+<style is:global>
+	::view-transition-new(*) {
+		animation: none;
+	}
+</style>

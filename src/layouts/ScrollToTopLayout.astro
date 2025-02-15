@@ -1,0 +1,35 @@
+---
+import MdxLayout from './MdxLayout.astro';
+
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+---
+
+<MdxLayout {title}>
+	<slot />
+</MdxLayout>
+
+<style is:global>
+	body {
+		max-width: 60ch;
+		margin: auto;
+		padding: 2ch;
+	}
+	::view-transition-old(*) {
+		animation-duration: 1s;
+	}
+	::view-transition-new(*) {
+		animation-duration: 1s;
+	}
+</style>
+<script is:inline>
+	document.addEventListener('astro:after-swap', () => {
+		const real = document.querySelector('#real');
+		if (real) {
+			real.innerText = new Date().toLocaleTimeString();
+		}
+		scrollTo({ left: 0, top: 0, behavior: 'instant' });
+	});
+</script>

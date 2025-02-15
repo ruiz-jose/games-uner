@@ -1,0 +1,43 @@
+---
+interface Props {
+	label?: string;
+}
+const { label } = Astro.props;
+---
+
+{label && <meta name="vtbot-auto-collapse-label" content={label} />}
+<script>
+	import * as STARLIGHT from 'astro-vtbot/components/starlight/utils';
+	import { TRANSITION_PAGE_LOAD } from 'astro:transitions/client';
+
+	const initial = localStorage.getItem('vtbot-auto-collapse') === 'true';
+
+	document.addEventListener(TRANSITION_PAGE_LOAD, () => {
+		const content = document.querySelector(STARLIGHT.SIDEBAR_CONTENT);
+		if (!content) return;
+		let toggle = document.querySelector('#vtbot-auto-collapse-toggle');
+		if (toggle) return;
+		toggle = document.createElement('div');
+		const autoCollapse =
+			document.querySelector<HTMLMetaElement>('meta[name="vtbot-auto-collapse-label"]')?.content ||
+			'auto collapse';
+		toggle.innerHTML = `<input type="checkbox" ${initial ? 'checked' : ''} id="vtbot-auto-collapse-toggle"><label for="vtbot-auto-collapse-toggle">${autoCollapse}</label>`;
+		toggle.querySelector<HTMLInputElement>('input')!.addEventListener('change', (e) => {
+			const checked = (e.target as HTMLInputElement).checked;
+			content.classList[checked ? 'remove' : 'add']('vtbot-no-auto-collapse');
+			localStorage.setItem('vtbot-auto-collapse', '' + checked);
+		});
+		initial || content.classList.add('vtbot-no-auto-collapse');
+		content.insertAdjacentElement('afterbegin', toggle);
+	});
+</script>
+<style is:global>
+	#vtbot-auto-collapse-toggle + label {
+		margin-right: 0.5rem;
+		margin-left: 0.5rem;
+	}
+	#vtbot-auto-collapse-toggle {
+		vertical-align: middle;
+		margin-left: 0.5rem;
+	}
+</style>
