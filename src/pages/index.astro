@@ -1,10 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from 'src/layouts/Layout.astro';
-import fi from 'src/assets/big-fi.png';
-import ch from 'src/assets/ch.png';
+import logo from 'src/assets/logo.svg';
 import bot from 'astro-vtbot/assets/bag-of-tricks.svg';
-import dtb from 'src/assets/devToolbar.png';
 ---
 
 <Layout title="Bienvenidos a la recolección de juegos para aprender computación">
@@ -12,13 +10,13 @@ import dtb from 'src/assets/devToolbar.png';
 		{
 			"@context": "https://schema.org",
 			"@type": "WebSite",
-			"name": "Bag of Tricks for Astro's View Transitions",
-			"alternateName": ["Bag of Tricks", "Bag of Tricks for Astro's View Transitions", "vtbot"],
+			"name": "Bienvenidos a la recolección de juegos para aprender computación",
+			"alternateName": ["Juegos computación", "Bienvenidos a la recolección de juegos para aprender computación", "vtbot"],
 			"url": "https://events-3bg.pages.dev/"
 		}
 	</script>
 
-	<meta slot="head" property="og:site_name" content="Bag of Tricks for Astro's View Transitions" />
+	<meta slot="head" property="og:site_name" content="juegos para aprender computación" />
 	<meta
 		slot="head"
 		property="og:title"
@@ -27,7 +25,7 @@ import dtb from 'src/assets/devToolbar.png';
 	<meta
 		slot="head"
 		name="description"
-		content="Reusable components, tech demos, and a wealth of in-depth information on Astro's view transitions"
+		content="Recolección de juegos para aprender computación"
 	/>
 	<meta slot="head" property="twitter:card" content="summary_large_image" />
 
@@ -42,20 +40,17 @@ import dtb from 'src/assets/devToolbar.png';
 	/>
 	<meta slot="head" property="og:locale" content="en_US" />
 
-	<Image id="fi" src={fi} alt="A single fish" transition:animate="slide" transition:name="fi" />
-	<Image id="dtb" src={dtb} alt="devToolbar" transition:name="dtb" />
-	<h1 class="massive">
-		Bienvenidos a la <br />
-		<span class="bang"
-			><Image transition:name="bot" id="bot" src={bot} alt="A bag of tricks" />
-			<span class="grad">recolección de juegos</span>
-		</span>
+	<Image id="logo" src={logo} alt="Logo Fcad" transition:animate="slide" transition:name="logo" />
+
+	<h2 class="massive">
+		Bienvenidos a la <br />	
+			<span class="grad">recolección de juegos <Image transition:name="bot" id="bot" src={bot} alt="A bag of tricks" /></span>
 		<br /> para aprender computación
-	</h1>
+	</h2>
 </Layout>
 
-<a href="/components/" transition:name="reuse">Juegos</a>
-<a href="/demos/" transition:name="demos">Otros</a><br />
+
+	<a href="/demos/" transition:name="demos">Juegos</a><br />
 
 <div class="fancy">&nbsp;</div>
 <div
@@ -177,7 +172,7 @@ import dtb from 'src/assets/devToolbar.png';
 		}
 	}
 
-	#fi {
+	#logo {
 		z-index: -1;
 		position: fixed;
 		bottom: 20vh;
@@ -235,7 +230,7 @@ import dtb from 'src/assets/devToolbar.png';
 		text-shadow: 0.1ex 0.1em 0.1em rgba(0, 0, 0, 0.2);
 	}
 	@media screen and (min-aspect-ratio: 1/1.1) {
-		#fi {
+		#logo {
 			left: 75vw;
 			bottom: 75vh;
 			transform: rotateY(180deg);
