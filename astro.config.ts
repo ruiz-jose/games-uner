@@ -107,7 +107,7 @@ export default defineConfig({
 		},
 		server: {
 			fs: {
-				allow: ['/Users/', '/home/']
+				allow: ['.', '/Users/', '/home/', '/workspaces/games-uner/']
 			}
 		},
 		plugins: [visualizer({
