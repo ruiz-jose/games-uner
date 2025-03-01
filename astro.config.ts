@@ -20,7 +20,7 @@ export default defineConfig({
 	experimental: {
 		svg: true,
 	},
-	devToolbar: { enabled: true },
+	devToolbar: { enabled: false },
 	prefetch: process.env.NODE_ENV === "production",
 	markdown: {
 		rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, {

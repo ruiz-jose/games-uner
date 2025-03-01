@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 
-body {
+.binario-container {
   font-family: 'Abril Fatface', arial;
   background: #12c2e9;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   text-align: center;
   font-size: 1em;
+  padding-bottom: 15px;
 }
 
-h1 {
+.binario-container h1 {
   font-family: 'Abril Fatface', arial;
   color: rgba(0, 0, 0, .45);
   font-size: 3em;
   margin: 0;
 }
 
-div#main {
+.binario-container div#main {
   background-color: rgba(255, 255, 255, .4);
   padding: 15px;
   border-radius: 20px;
@@ -26,11 +27,11 @@ div#main {
   margin: 0 auto;
 }
 
-#number, .large {
+.binario-container #number, .binario-container .large {
   font-size: 6em;
 }
 
-#number {
+.binario-container #number {
   margin: 0;
   color: black;
   letter-spacing: 5px;
@@ -38,7 +39,7 @@ div#main {
   text-shadow: 2px 2px rgba(255, 255, 255, 0.5);
 }
 
-input, button {
+.binario-container input, .binario-container button {
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 10px;
@@ -50,16 +51,16 @@ input, button {
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 
-input {
+.binario-container input {
   padding: 5px;
   font-size: 1.5em;
 }
 
-button {
+.binario-container button {
   margin: 0 15px;
 }
 
-button:hover {
+.binario-container button:hover {
   background-color: white;
   cursor: pointer;
 }

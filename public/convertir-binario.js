@@ -11,7 +11,7 @@ const binaryBox = document.querySelector("#binary");
 const largeBox = document.querySelector("#large");
 
 let points = 0;
-let max = 16;
+let max = 15;
 let num = Math.floor(Math.random() * max);
 
 numP.innerHTML = num.toString(2);
@@ -34,9 +34,9 @@ submit.addEventListener('click', e => {
 
 newNumB.addEventListener('click', e => {
   if (largeBox.checked) {
-    max = 256;
+    max = 255;
   } else {
-    max = 16;
+    max = 15;
   }
 	num = Math.floor(Math.random() * max);
   if (binaryBox.checked) {
@@ -49,15 +49,15 @@ newNumB.addEventListener('click', e => {
 });
 
 function success() {
-  resultP.innerHTML = "Correct!";
+  resultP.innerHTML = "Correcto!";
   points++;
   if (points < 2) {
-    pointsP.innerHTML = points + " point";
+    pointsP.innerHTML = points + " punto";
   } else {
-    pointsP.innerHTML = points + " points";
+    pointsP.innerHTML = points + " puntos";
   }
 }
 
 function fail(answer) {
-  resultP.innerHTML = "Sorry, the answer was <br/><span class='large'>" + answer + "</span>";
+  resultP.innerHTML = "Lo siento, la respuesta era <br/><span class='large'>" + answer + "</span>";
 }
