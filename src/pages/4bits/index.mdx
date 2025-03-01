@@ -1,0 +1,56 @@
+
+---
+layout: src/layouts/GalleryMdxLayout.astro
+title: Binary Game
+description: Juego para practicar la conversión entre binario y decimal.
+---
+
+<link rel="stylesheet" href="/_4bits.css" />
+
+<div class="bits-container">
+ <div id="wrapper">
+    <h1>
+     4 bits
+    </h1>
+    <h2>
+     Enciende las luces
+    </h2>
+    <p>
+      Encienda las bombillas en los lugares correspondientes para convertir el siguiente número decimal generado aleatoriamente (entre 0 y 15) a binario.
+    </p>
+    <p id="number">
+      #
+    </p>
+    <div class="row">
+      <div id="lightbulb8" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place"></span>
+      </div>
+      <div id="lightbulb4" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place"></span>
+      </div>
+      <div id="lightbulb2" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place"></span>
+      </div>
+      <div id="lightbulb1" class="item lightbulb">
+        <span class="emoji">💡</span><br/>
+        <span class="place"></span>
+      </div>
+    </div>
+  
+    <button id="button">
+      ¡Comprueba mi respuesta!
+    </button>
+    
+    <button id="new">
+      Nuevo número
+    </button>
+
+    <p id="result"></p>
+    
+  </div>
+</div>
+
+<script src="/4bits.js" defer></script>
