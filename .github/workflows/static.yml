@@ -38,6 +38,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Give execute permissions to build script
+        run: chmod +x ./bin/build
+
+      - name: Give execute permissions to relocate script
+        run: chmod +x ./bin/relocate.sh
+
       - name: Build
         run: npm run build
 
