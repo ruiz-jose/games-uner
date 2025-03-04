@@ -49,6 +49,9 @@ jobs:
       - name: Build
         run: ./bin/build
 
+      - name: List build output  # Paso adicional para listar los archivos generados
+        run: ls -la ./dist
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
