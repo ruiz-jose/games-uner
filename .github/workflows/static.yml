@@ -32,27 +32,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       - name: Install Dependencies
         run: npm install
-
-      - name: Give execute permissions to build script
-        run: chmod +x ./bin/build
-
-      - name: Give execute permissions to relocate script
-        run: chmod +x ./bin/relocate.sh
 
       - name: Build
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v1
         with:
           # Upload the build output directory
           path: './dist'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v1
