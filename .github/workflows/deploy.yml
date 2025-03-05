@@ -32,8 +32,11 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Give execute permissions to build script
+        run: chmod +x ./bin/build
+
       - name: Build
-        run: npm run build
+        run: ./bin/build
 
       - name: List build output
         run: ls -la ./dist
