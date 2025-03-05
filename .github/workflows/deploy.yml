@@ -64,4 +64,3 @@ jobs:
         uses: actions/deploy-pages@v1
         with:
           artifact_name: github-pages  # Asegúrate de que el nombre del artefacto coincida
-          branch: docs  # Especifica la rama docs para el despliegue
