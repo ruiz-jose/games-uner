@@ -57,7 +57,6 @@ jobs:
         with:
           # Upload the build output directory
           path: './dist'
-          name: github-pages  # Asegúrate de que el nombre del artefacto sea correcto
 
       - name: Deploy to GitHub Pages
         id: deployment
