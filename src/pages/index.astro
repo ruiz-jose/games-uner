@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import Layout from 'src/layouts/Layout.astro';
-import logo from 'src/assets/logo.svg';
+import logo from 'src/assets/logo.png';
 import bot from 'astro-vtbot/assets/bag-of-tricks.svg';
 ---
 
@@ -233,7 +233,8 @@ import bot from 'astro-vtbot/assets/bag-of-tricks.svg';
 		#logo {
 			left: 75vw;
 			bottom: 75vh;
-			transform: rotateY(180deg);
+			/* Elimina la siguiente línea para evitar que el logo se invierta */
+			/* transform: rotateY(180deg); */
 		}
 		#outer {
 			left: 70vw;
