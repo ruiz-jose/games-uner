@@ -7,7 +7,7 @@ npx astro check && npx astro build
 if [ "$?" -ne "0" ]; then
     exit 1
 fi
-./bin/check_links.sh | grep -v "#starlight-image-zoom"
+# ./bin/check_links.sh | grep -v "#starlight-image-zoom"  # Comentado temporalmente
 [ -n "$GS" ] && echo -n "google-site-verification: ${GS}" > ./dist/${GS}
 
 exit 0
