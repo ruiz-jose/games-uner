@@ -40,7 +40,7 @@ jobs:
         run: chmod +x ./bin/relocate.sh
 
       - name: Build
-        run: ./bin/build
+        run: npm run build
 
       - name: List build output
         run: ls -la ./dist
