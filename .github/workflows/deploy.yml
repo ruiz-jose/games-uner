@@ -1,4 +1,3 @@
-# filepath: .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
 
 on:
@@ -29,4 +28,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public  # o la carpeta que prefieras
+          publish_dir: ./public  # asegúrate de que esta carpeta exista y contenga los archivos estáticos
