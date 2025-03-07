@@ -16,7 +16,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://events-3bg.pages.dev/",
+	site: 'https://ruiz-jose.github.io',
 	experimental: {
 		svg: true,
 	},
