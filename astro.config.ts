@@ -75,7 +75,7 @@ export default defineConfig({
 			src: "/node_modules/astro-vtbot/assets/bag-of-tricks.svg"
 		},
 		social: {
-			github: "https://github.com/martrapp/astro-vtbot",
+			github: "https://github.com/ruiz-jose/games-uner",
 			blueSky: 'https://bsky.app/profile/martr.app'
 		},
 		editLink: {
