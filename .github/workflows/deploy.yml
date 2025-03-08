@@ -32,4 +32,4 @@ jobs:
       with:
         source: .
         destination: _site
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
