@@ -3,7 +3,8 @@ import { Image } from 'astro:assets';
 import Layout from 'src/layouts/Layout.astro';
 import logo from 'src/assets/logo.png';
 import bot from 'astro-vtbot/assets/bag-of-tricks.svg';
-const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
+//const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
+const base = import.meta.env.MODE === 'production' ? '' : '';
 ---
 
 <Layout title="Bienvenidos a la recolección de juegos para aprender computación">
