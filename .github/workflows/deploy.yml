@@ -23,7 +23,10 @@ jobs:
 
       - name: Build project
         run: npm run build
- 
+      
+      - name: Create .nojekyll file
+        run: echo "" > ./dist/.nojekyll  # Asegúrate de que esta carpeta exista y contenga los archivos estáticos
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
