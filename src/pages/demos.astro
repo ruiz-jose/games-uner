@@ -15,7 +15,7 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 	<ul role="list" class="link-card-grid" transition:name="bot">
 		<Card
 			what="binario-decimal"
-			href=`${base}/binario`
+			href={`${base}/binario`}
 			title="Binario-decimal"
 			icon="2️⃣"
 			body="Convertidor binario-decimal y viceversa!"
@@ -23,7 +23,7 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 		/>
 		<Card
 			what="4 bits"
-			href=`${base}/4bits`
+			href={`${base}/binario`}
 			title="4 bits"
 			icon="4️⃣"
 			body="Enciende las luces para identificar el binario!"
