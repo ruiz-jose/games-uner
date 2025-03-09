@@ -2,6 +2,7 @@
 import MdxLayout from '../layouts/MdxLayout.astro';
 import Card from '../components/Card.astro';
 import Content from 'src/mdx/demos.mdx';
+const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 ---
 
 <MdxLayout title="Juegos">
@@ -14,7 +15,7 @@ import Content from 'src/mdx/demos.mdx';
 	<ul role="list" class="link-card-grid" transition:name="bot">
 		<Card
 			what="binario-decimal"
-			href="/binario"
+			href=`${base}/binario`
 			title="Binario-decimal"
 			icon="2️⃣"
 			body="Convertidor binario-decimal y viceversa!"
@@ -22,7 +23,7 @@ import Content from 'src/mdx/demos.mdx';
 		/>
 		<Card
 			what="4 bits"
-			href="/4bits"
+			href=`${base}/4bits`
 			title="4 bits"
 			icon="4️⃣"
 			body="Enciende las luces para identificar el binario!"
