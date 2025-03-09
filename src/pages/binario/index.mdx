@@ -3,10 +3,10 @@
 layout: src/layouts/GalleryMdxLayout.astro
 title: Binary Game
 description: Juego para practicar la conversión entre binario y decimal.
-const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 ---
+const base = import.meta.env.BASE_URL;
 
-<link rel="stylesheet" href="/src/styles/_binario.css" />
+<link rel="stylesheet" href={`${base}/src/styles/_binario.css`} />
 
 <div class="binario-container">
   <h1>Binary Game</h1>
@@ -37,4 +37,3 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 </div>
 
 <script src={`${base}/src/scripts/convertir-binario.js`} defer></script>
-
