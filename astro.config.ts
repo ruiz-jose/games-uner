@@ -16,8 +16,8 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://ruiz-jose.github.io/games-uner/',
-    base: process.env.NODE_ENV === "production" ? "/games-uner/" : "/",
+    site: 'https://ruiz-jose.github.io',
+    base: process.env.NODE_ENV === "production" ? "games-uner" : "/",
 	experimental: {
 		svg: true,
 	},
