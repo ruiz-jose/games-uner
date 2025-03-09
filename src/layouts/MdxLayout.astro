@@ -11,6 +11,7 @@ interface Props {
 }
 const { frontmatter } = Astro.props;
 const title = frontmatter?.title ?? Astro.props.title ?? '';
+const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 if (!title) {
 	console.log('Title not set for ' + Astro.url.pathname);
 }
@@ -23,7 +24,7 @@ if (!title) {
 		<a href="javascript:history.back()">⮌ back</a>
 		{frontmatter?.overview && <a href={frontmatter.overview}> | Overview</a>} | <a
 			data-astro-reload
-			href="/">Home</a
+			href={`${base}/`}>Home</a
 		>
 	</header>
 	<main>
