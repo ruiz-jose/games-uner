@@ -1,8 +1,3 @@
-// Copyright (c) 2023 leon
-// 
-// This software is released under the MIT License.
-// https://opensource.org/licenses/MIT
-
 let boardSize, board, targetRowSums, targetColSums;
 
 function showGridSizeSelector() {
@@ -137,6 +132,5 @@ function initGame() {
   giveUpButton.onclick = revealSolution;
   giveUpButton.style.display = 'block';
 }
-
 
 showGridSizeSelector();
