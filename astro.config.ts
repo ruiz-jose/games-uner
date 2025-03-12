@@ -60,7 +60,7 @@ export default defineConfig({
 			Pagination: "./src/components/starlight/FeelBack.astro",
 			//MarkdownContent: "./src/components/MarkdownContent.astro"
 		},
-		title: "Bag of Tricks",
+		title: "Colección de juegos",
 		head: [{
 			tag: "meta",
 			attrs: {
