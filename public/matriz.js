@@ -1,4 +1,5 @@
 let boardSize, board, targetRowSums, targetColSums;
+window.initGame = initGame;
 
 function showGridSizeSelector() {
   const app = document.getElementById('app');
