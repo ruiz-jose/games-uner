@@ -27,35 +27,46 @@ function generateSums() {
 }
 
 function createBoard() {
+  // Inicializa la matriz con valores de 0
   board = Array.from({ length: boardSize }, () => Array(boardSize).fill(0));
-  const app = document.getElementById('app');
-  app.innerHTML = '';
 
+  // Obtén el contenedor principal
+  const app = document.getElementById('app');
+  app.innerHTML = ''; // Limpia cualquier contenido previo
+
+  // Crea el contenedor del grid
   const grid = document.createElement('div');
-  grid.className = `grid grid-cols-${boardSize + 1} gap-4`;
+  grid.className = 'grid'; // Clase CSS para el grid
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = `repeat(${boardSize + 1}, 3rem)`; // Configura las columnas dinámicamente
+  grid.style.gap = '0.5rem'; // Espaciado entre celdas
   app.appendChild(grid);
 
+  // Genera las celdas de la matriz
   for (let row = 0; row < boardSize; row++) {
     for (let col = 0; col < boardSize; col++) {
       const cell = document.createElement('div');
-      cell.className = 'cell off';
-      cell.onclick = () => toggleCell(row, col);
+      cell.className = 'cell off'; // Clase CSS para las celdas
+      cell.onclick = () => toggleCell(row, col); // Asigna el evento de clic
       grid.appendChild(cell);
     }
 
+    // Agrega una celda para la suma de la fila
     const sumCell = document.createElement('div');
     sumCell.className = 'cell number';
-    sumCell.textContent = targetRowSums[row];
+    sumCell.textContent = targetRowSums[row]; // Muestra la suma de la fila
     grid.appendChild(sumCell);
   }
 
+  // Agrega las celdas para las sumas de las columnas
   for (let col = 0; col < boardSize; col++) {
     const sumCell = document.createElement('div');
     sumCell.className = 'cell number';
-    sumCell.textContent = targetColSums[col];
+    sumCell.textContent = targetColSums[col]; // Muestra la suma de la columna
     grid.appendChild(sumCell);
   }
 
+  // Agrega una celda vacía en la esquina inferior derecha
   grid.appendChild(document.createElement('div'));
 }
 
