@@ -129,7 +129,7 @@ function revealSolution() {
 
   // Change the "Give Up" button to a "Play Again" button
   const giveUpButton = document.getElementById('giveUpButton');
-  giveUpButton.textContent = 'Play Again';
+  giveUpButton.textContent = 'Jugar de nuevo';
   giveUpButton.onclick = showGridSizeSelector;
 }
 
@@ -140,7 +140,7 @@ function initGame() {
   generateSums();
   createBoard();
   document.getElementById('app').style.display = 'block';
-  giveUpButton.textContent = 'Give Up';
+  giveUpButton.textContent = 'Abandonar';
   giveUpButton.onclick = revealSolution;
   giveUpButton.style.display = 'block';
 }
