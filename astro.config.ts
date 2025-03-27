@@ -7,7 +7,7 @@ import rehypeExternalLinks from "rehype-external-links";
 import remarkHeadingID from 'remark-heading-id';
 import remarkToc from 'remark-toc';
 import vtbot from 'astro-vtbot';
-import type { SidebarItem } from 'node_modules/@astrojs/starlight/schemas/sidebar';
+//import type { SidebarItem } from 'node_modules/@astrojs/starlight/schemas/sidebar';
 import starlightImageZoom from 'starlight-image-zoom';
 import starlightUtils from "@lorenzo_lewis/starlight-utils";
 import { visualizer } from "rollup-plugin-visualizer";
@@ -82,13 +82,7 @@ export default defineConfig({
 		editLink: {
 			baseUrl: "https://github.com/martrapp/astro-vtbot-website/edit/main/"
 		},
-		sidebar: [{
-			label: "Astro",
-			items: sidebar1()
-		}, {
-			label: "General",
-			items: sidebar2()
-		}, {
+		sidebar: [ {
 			label: "leading",
 			items: [{
 				label: "[C]",
@@ -116,114 +110,3 @@ export default defineConfig({
 		})]
 	}
 });
-function sidebar1() {
-	return ([{
-		label: "Bag of Tricks",
-		items: [{
-			label: "A Brief History of The Bag",
-			link: "/jotter/history/"
-		}, {
-			label: "ClientRouter Migration?", collapsed: true,
-			items: [{
-				label: "High Level Considerations",
-				link: "/jotter/astro-view-transitions/"
-			}, {
-				label: "Feature Comparison",
-				link: "/jotter/feature-comparison/"
-			}, {
-				label: "Migration Path",
-				link: "/jotter/migrate/"
-			}]
-		}, {
-			label: "Tech-Demos",
-			link: "/jotter/demos/"
-		}, {
-			label: "Reusable Components",
-			link: "/jotter/components/"
-		}, {
-			label: "The Jotter",
-			link: "/jotter/"
-		}, {
-			label: "Recent Changes",
-			link: "/jotter/history-of-changes/",
-			badge: {
-				text: "start here when re-visiting",
-				variant: "success"
-			}
-		}]
-	}, {
-		label: "Astro View Transitions",
-		items: [{
-			label: "<View Transitions />",
-			link: "/jotter/astro/"
-		}, {
-			label: "Transition Directives",
-			link: "/jotter/astro/directives/"
-		}, {
-			label: "Global Flow & Events",
-			link: "/jotter/astro/flow-events/"
-		}, {
-			label: "Loading and Swapping",
-			link: "/jotter/astro/loader-swap/"
-		}, {
-			label: "How Simulation and API differ",
-			link: "/jotter/astro/differences/"
-		}, {
-			label: "Re-initialize Scripts after Transition",
-			link: "/jotter/astro/scripts/"
-		}]
-	}, {
-		label: "The Jotter on Starlight",
-		items: [{
-			label: "Introduction",
-			link: "/jotter/starlight/"
-		}, {
-			label: "Guide: Adding View Transitions",
-			link: "/jotter/starlight/guide/"
-		}, {
-			label: "The Inner Workings",
-			items: [{
-				label: "Overview",
-				link: "/jotter/starlight/inner-workings/"
-			}, {
-				label: "Hooking into Starlight",
-				link: "/jotter/starlight/inner-workings/integration/"
-			}, {
-				label: "Managing the App State",
-				link: "/jotter/starlight/inner-workings/app-state/"
-			}, {
-				label: "Updating the Sidebar",
-				link: "/jotter/starlight/inner-workings/sidebar/"
-			}, {
-				label: "Defining Transitions",
-				link: "/jotter/starlight/inner-workings/transitions/"
-			}]
-		}]
-	}, {
-		label: "Lost & Found / to be Curated",
-		autogenerate: {
-			directory: "jotter/snippets"
-		}
-	}] as SidebarItem[]);
-}
-function sidebar2() {
-	return ([{
-		label: "Browser View Transition API",
-		items: [{
-			label: "Browser Support",
-			link: "/jotter/api/test-page/"
-		}, {
-			label: "API Overview",
-			link: "/jotter/api/"
-		}, {
-			label: "API Details",
-			link: "/jotter/api/details/"
-		}, {
-			label: "In-Depth Example",
-			link: "/jotter/api/example/"
-		}, {
-			label: "References",
-			link: "/jotter/api/references/"
-		}]
-	}] as SidebarItem[]);
-}
