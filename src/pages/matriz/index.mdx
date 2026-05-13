@@ -1,6 +1,6 @@
 ---
-#layout: src/layouts/GalleryMdxLayout.astro
-title: Matriz Game (Binary Puzzle)
+layout: src/layouts/GalleryMdxLayout.astro
+title: Matriz Binaria
 description: Juego para practicar la conversión a binario.
 ---
 
@@ -24,16 +24,16 @@ description: Juego para practicar la conversión a binario.
     </div>
     <div class="button-container">
       <button id="giveUpButton" onClick={() => revealSolution()} class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-        Give Up
+        Rendirse
       </button>
     </div>
   </div>
 
   <div id="overlay" class="overlay">
     <div id="popup" class="popup">
-      <p class="text-xl font-semibold text-white">Congratulations! You've solved the puzzle!</p>
+      <p class="text-xl font-semibold text-white">¡Felicitaciones! ¡Resolviste el rompecabezas!</p>
       <button onClick={() => showGridSizeSelector()}>
-        Play Again
+        Jugar de nuevo
       </button>
     </div>
   </div>
