@@ -16,88 +16,122 @@ const hrefProps = reload ? { 'data-astro-reload': true } : {};
 
 <li class="link-card">
 	<a href={href} {...hrefProps}>
-		<h2>
+		<span class="card-icon">
 			{
 				name ? (
-					<span style={`view-transition-name: ${name + '-1'}; display:inline-block`}>{title}</span>
-				) : (
-					`${title}`
-				)
-			}
-			<span>&nbsp;&rarr;</span>
-		</h2>
-		<p>
-			{
-				name ? (
-					<span
-						style={`view-transition-name: ${
-							name + '-2'
-						}; display: inline-block; font-size:3.5rem; float:right; padding:0.2em; ${iconStyle}`}
-					>
+					<span style={`view-transition-name: ${name + '-2'}; display:inline-block; ${iconStyle}`}>
 						{icon}
 					</span>
 				) : (
-					<span style={`font-size:3.5rem; float:right; padding:0.2em; ${iconStyle}`}>{icon}</span>
+					<span style={iconStyle}>{icon}</span>
 				)
 			}
-			{body}
-			{
-				name ? (
-					<div style={`view-transition-name: ${name + '-3'};`}>
+		</span>
+		<div class="card-body">
+			<h2>
+				{
+					name ? (
+						<span style={`view-transition-name: ${name + '-1'}; display:inline-block`}>{title}</span>
+					) : (
+						`${title}`
+					)
+				}
+				<span class="arrow">&nbsp;→</span>
+			</h2>
+			<p>
+				{body}
+				{
+					name ? (
+						<div style={`view-transition-name: ${name + '-3'};`}>
+							<slot />
+						</div>
+					) : (
 						<slot />
-					</div>
-				) : (
-					<slot />
-				)
-			}
-		</p>
+					)
+				}
+			</p>
+		</div>
 	</a>
 </li>
+
 <style>
 	.link-card {
 		list-style: none;
 		display: flex;
-		padding: 0.25rem;
-		background-color: var(--vtbot-background-color);
-		background-image: none;
-		background-size: 400%;
-		border-radius: 0.6rem;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow:
-			0 4px 6px -1px rgba(0, 0, 0, 0.1),
-			0 2px 4px -2px rgba(0, 0, 0, 0.1);
+		padding: 1px;
+		background: linear-gradient(135deg, rgba(67, 97, 238, 0.35), rgba(114, 9, 183, 0.35));
+		border-radius: 14px;
+		transition: all 0.35s ease;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 	}
 
 	.link-card > a {
 		width: 100%;
 		text-decoration: none;
-		line-height: 1.4;
-		padding: 1rem 1.3rem;
-		border-radius: 0.35rem;
-		background-color: var(--vtbot-background-color);
-		opacity: 0.8;
-		color: var(--vtbot-color);
+		line-height: 1.5;
+		padding: 1.2rem 1.4rem;
+		border-radius: 13px;
+		background: rgba(13, 17, 23, 0.88);
+		backdrop-filter: blur(12px);
+		color: #e6edf3;
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem;
+		transition: background 0.35s ease;
 	}
+
+	.card-icon {
+		font-size: 2.4rem;
+		line-height: 1;
+		flex-shrink: 0;
+		margin-top: 0.1rem;
+	}
+
+	.card-body {
+		flex: 1;
+		min-width: 0;
+	}
+
 	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		margin: 0 0 0.3rem;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #e6edf3;
+		transition: color 0.3s ease;
+		font-family: 'Space Grotesk', sans-serif;
 	}
-	tt {
-		font-size: 0.66rem;
+
+	.arrow {
+		color: #4cc9f0;
+		opacity: 0;
+		transition: opacity 0.3s ease, transform 0.3s ease;
+		display: inline-block;
 	}
+
 	p {
-		hyphens: auto;
-		margin-top: 0.5rem;
-		margin-bottom: 0;
+		margin: 0;
+		font-size: 0.875rem;
+		color: #8b949e;
+		line-height: 1.55;
 		hyphens: auto;
 	}
+
 	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
+		background: linear-gradient(135deg, #4361ee, #7209b7);
+		box-shadow: 0 0 35px rgba(67, 97, 238, 0.4), 0 8px 30px rgba(0, 0, 0, 0.4);
+		transform: translateY(-4px);
 	}
+
+	.link-card:is(:hover, :focus-within) > a {
+		background: rgba(13, 17, 23, 0.82);
+	}
+
 	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent));
+		color: #4cc9f0;
+	}
+
+	.link-card:is(:hover, :focus-within) .arrow {
+		opacity: 1;
+		transform: translateX(3px);
 	}
 </style>

@@ -1,66 +1,152 @@
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 .binario-container {
-  font-family: 'Abril Fatface', arial;
-  background: #12c2e9;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f64f59, #c471ed, #12c2e9);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #f64f59, #c471ed, #12c2e9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, #0d1117 0%, #12122a 100%);
   text-align: center;
-  font-size: 1em;
-  padding-bottom: 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  color: #e6edf3;
+  position: relative;
+}
+
+.binario-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 60%, rgba(247, 37, 133, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 75% 25%, rgba(67, 97, 238, 0.16) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .binario-container h1 {
-  font-family: 'Abril Fatface', arial;
-  color: rgba(0, 0, 0, .45);
-  font-size: 3em;
-  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 1.5rem;
+  background: linear-gradient(135deg, #4cc9f0, #f72585);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
 }
 
 .binario-container div#main {
-  background-color: rgba(255, 255, 255, .4);
-  padding: 15px;
-  border-radius: 20px;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
-  color: rgba(0, 0, 0, 0.8);
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-.binario-container #number, .binario-container .large {
-  font-size: 6em;
+  position: relative;
+  z-index: 1;
+  background: rgba(22, 27, 34, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2.2rem 2rem;
+  border-radius: 24px;
+  box-shadow:
+    0 0 60px rgba(67, 97, 238, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+  max-width: 460px;
+  width: 90%;
 }
 
 .binario-container #number {
-  margin: 0;
-  color: black;
-  letter-spacing: 5px;
-  color: rgba(0, 0, 0, 0.9);
-  text-shadow: 2px 2px rgba(255, 255, 255, 0.5);
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  margin: 0.5rem auto;
+  color: #f72585;
+  text-shadow: 0 0 30px rgba(247, 37, 133, 0.4);
+  letter-spacing: 0.05em;
+  display: block;
 }
 
-.binario-container input, .binario-container button {
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 10px;
-  font-family: 'Abril Fatface', arial;
-  color: rgba(0, 0, 0, 0.8);
-  font-size: 1em;
+.binario-container .large {
+  font-size: 5.5rem;
+}
+
+.binario-container p {
+  color: #8b949e;
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+
+.binario-container input[type="radio"] {
+  accent-color: #4cc9f0;
+  cursor: pointer;
+}
+
+.binario-container label {
+  color: #8b949e;
+  margin: 0 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.binario-container label:hover {
+  color: #e6edf3;
+}
+
+.binario-container input[type="text"] {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(76, 201, 240, 0.3);
+  color: #e6edf3;
+  padding: 0.6em 1em;
+  border-radius: 12px;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.5rem;
   text-align: center;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 240px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.binario-container input {
-  padding: 5px;
-  font-size: 1.5em;
+.binario-container input[type="text"]:focus {
+  border-color: #4cc9f0;
+  box-shadow: 0 0 18px rgba(76, 201, 240, 0.2);
 }
 
 .binario-container button {
-  margin: 0 15px;
+  background: linear-gradient(135deg, #4361ee, #7209b7);
+  color: white;
+  border: none;
+  padding: 0.7em 1.8em;
+  border-radius: 50px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 0.3rem;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.35);
+  letter-spacing: 0.02em;
 }
 
 .binario-container button:hover {
-  background-color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(67, 97, 238, 0.55);
   cursor: pointer;
+}
+
+.binario-container #result {
+  font-family: 'Space Mono', monospace;
+  font-size: 1.1rem;
+  color: #4cc9f0;
+  min-height: 1.8rem;
+  font-weight: 700;
+}
+
+.binario-container #points {
+  font-size: 0.9rem;
+  color: #8b949e;
+  font-family: 'Space Mono', monospace;
+}
+
+.binario-container #state {
+  color: #4cc9f0;
+  font-weight: 700;
 }

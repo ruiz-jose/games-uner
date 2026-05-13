@@ -8,7 +8,7 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 
 <MdxLayout title="Juegos">
 	<h1>
-		<span transition:name="demos">Compilación de</span><br />
+		<span transition:name="demos">Colección de</span><br />
 		<span class="text-gradient">juegos</span> para aprender computación
 	</h1>
 
@@ -25,72 +25,69 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 		<Card
 			what="Juego de 4 Bits"
 			href={`${base}/4bits`}
-			title="Juego de 4 Bit"
+			title="Juego de 4 Bits"
 			icon="💡"
 			body="Enciende las luces correctas para representar números binarios en 4 bits."
 			reload
-		/>		
+		/>
 		<Card
-		what="Matriz Binaria"
-		href={`${base}/matriz`}
-        title="Matriz Binaria"
-        icon="🧮"
-        body="Explora y aprende sobre matrices binarias con este divertido juego educativo."
-		reload
+			what="Matriz Binaria"
+			href={`${base}/matriz`}
+			title="Matriz Binaria"
+			icon="🧮"
+			body="Completa la cuadrícula binaria para que las sumas de filas y columnas sean correctas."
+			reload
 		/>
 		<Card
 			what="Juego Binario de Cisco"
 			href="https://learningcontent.cisco.com/games/binary/index.html"
-			title="Juego Binario de Cisco"
+			title="Juego Binario Cisco"
 			icon="🎮"
 			body="Explora el juego interactivo de Cisco para aprender sobre números binarios."
 			reload
-		/>		
-		<Card
-				what="Virtual Mechanical Adder"
-				href="https://leloctai.com/mechanicalAdder/"
-				title="Virtual Mechanical Adder"
-				icon="⚙️"
-				body="Esta es una máquina sumadora binaria basada en el diseño de Matthias Wandel. Aunque sería más eficiente en 2D, ¡el toque analógico de los objetos 3D es fascinante!"
-				reload
 		/>
 		<Card
-				what="Binary Login"
-				href="https://binary.loicviennois.com/login"
-				title="Binary Login"
-				icon="🔐"
-				body="Explora este programa gratuito para aprender sobre números binarios y su aplicación en sistemas de autenticación."
-				reload
+			what="Virtual Mechanical Adder"
+			href="https://leloctai.com/mechanicalAdder/"
+			title="Sumadora Mecánica"
+			icon="⚙️"
+			body="Máquina sumadora binaria basada en el diseño de Matthias Wandel. ¡El toque analógico en 3D es fascinante!"
+			reload
+		/>
+		<Card
+			what="Binary Login"
+			href="https://binary.loicviennois.com/login"
+			title="Binary Login"
+			icon="🔐"
+			body="Aprende sobre números binarios y su aplicación en sistemas de autenticación."
+			reload
 		/>
 	</ul>
 </MdxLayout>
 
 <style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&display=swap');
+
 	::view-transition-old(demos) {
 		opacity: 0;
 	}
 	::view-transition-group(root) {
 		animation-duration: 1s;
 	}
-
 	::view-transition-old(dtb) {
-		animation: to-bottom 1s both
+		animation: to-bottom 1s both;
 	}
 	@keyframes to-bottom {
-		to {
-			transform: translateY(100%);
-		}
+		to { transform: translateY(100%); }
 	}
 
 	:root {
-		--accent: 135, 206, 235;
-		--accent-gradient: linear-gradient(330deg, #000, rgb(135, 206, 235));
+		--accent: 76, 201, 240;
+		--accent-gradient: linear-gradient(135deg, #4361ee, #7209b7);
 	}
+
 	html {
-		font-family: sans-serif;
-	}
-	code {
-		font-family: monospace;
+		font-family: 'Space Grotesk', sans-serif;
 	}
 </style>
 
@@ -99,47 +96,38 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 		margin: auto;
 		padding: 1.5rem;
 	}
+
 	h1 {
-		font-size: 3rem;
+		font-size: clamp(2rem, 5vw, 3.2rem);
 		font-weight: 800;
-		margin: 0;
+		margin: 0 0 0.5rem;
+		line-height: 1.2;
+		font-family: 'Space Grotesk', sans-serif;
 	}
+
 	html body {
 		max-width: 90%;
 	}
 
 	.text-gradient {
-		background-image: var(--accent-gradient);
+		background-image: linear-gradient(135deg, #4cc9f0, #7209b7, #f72585);
+		background-size: 200% auto;
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
+		background-clip: text;
+		animation: gradShift 5s ease-in-out infinite;
 	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		padding: 1rem;
-		border-radius: 0.4rem;
+
+	@keyframes gradShift {
+		0%, 100% { background-position: 0% center; }
+		50% { background-position: 100% center; }
 	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.instructions a {
-		color: rgb(var(--accent));
-	}
+
 	.link-card-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.2rem;
 		padding: 0;
+		margin-top: 1.5rem;
 	}
 </style>
