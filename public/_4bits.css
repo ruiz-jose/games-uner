@@ -1,81 +1,139 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat");
-@import url("https://fonts.googleapis.com/css?family=Abril+Fatface");
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap');
 
 * { box-sizing: border-box; }
 
-.bits-container
-{
-  background-color: black;
-  color: white;
-  font-family: arial;
+.bits-container {
+  background: linear-gradient(135deg, #0d1117 0%, #12122a 100%);
+  color: #e6edf3;
+  font-family: 'Space Grotesk', sans-serif;
   text-align: center;
-  font-family: 'Montserrat';
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  position: relative;
 }
 
-.bits-container h1 {
-  font-size: 4em;
-  margin: 0;
-}
-
-.bits-container h1, h2, #number, #result {
-  font-family: 'Abril Fatface';
-}
-
-.bits-container #number, #result {
-  font-size: 3em;
-  margin: 30px auto 0px auto;
-}
-
-.bits-container p {
-  line-height: 25px;
-  max-width: 70%;
-  margin: 0 auto;
+.bits-container::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(114, 9, 183, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 20%, rgba(67, 97, 238, 0.18) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .bits-container #wrapper {
-  max-width: 100%;
-  background-color: rgba(255, 255, 255, 0.15);
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  width: 100%;
+  background: rgba(22, 27, 34, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   margin: 0 auto;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  border-radius: 24px;
+  box-shadow:
+    0 0 60px rgba(67, 97, 238, 0.12),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.bits-container h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  margin: 0 0 0.2rem;
+  background: linear-gradient(135deg, #4cc9f0, #7209b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.bits-container h2 {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  color: #8b949e;
+  font-weight: 400;
+  margin: 0 0 1rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.bits-container p {
+  color: #8b949e;
+  max-width: 46ch;
+  margin: 0 auto 0.5rem;
+  line-height: 1.6;
+  font-size: 0.92rem;
+}
+
+.bits-container #number {
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  margin: 0.5rem auto;
+  color: #f72585;
+  text-shadow: 0 0 30px rgba(247, 37, 133, 0.45);
+  display: block;
 }
 
 .bits-container .row {
-  padding: 25px;
+  padding: 1.5rem 0;
   display: flex;
   width: 100%;
-  flex-wrap: nowrap; /* Cambiado de wrap a nowrap */
-  justify-content: space-between; /* Cambiado de space-around a space-between */
-  padding-left: 10px; /* Añadido padding izquierdo */
-  padding-right: 10px; /* Añadido padding derecho */
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  gap: 0.5rem;
 }
 
 .bits-container .item {
   text-align: center;
-  background-color: black;
-  padding: 10px;
-  transition: 0.2s;
-  border-radius: 20px;
-  flex: 0 0 auto; /* Asegura que los elementos no se reduzcan y se mantengan en una fila */
-  margin: 0 10px; /* Añade margen entre los elementos */
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 16px;
+  flex: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bits-container .item:hover {
+  background: rgba(76, 201, 240, 0.06);
+  border-color: rgba(76, 201, 240, 0.2);
 }
 
 .bits-container .emoji {
-  font-size: 100px;
+  font-size: clamp(36px, 8vw, 72px);
+  display: block;
+  transition: filter 0.3s ease;
+  filter: grayscale(0.9) brightness(0.4);
 }
 
 .bits-container .place {
-  font-size: 18px;
+  font-size: clamp(13px, 2vw, 17px);
+  font-family: 'Space Mono', monospace;
+  color: #8b949e;
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: 700;
 }
 
 .bits-container .active {
-  background: white;
-  transform: scale(1.1);
-  box-shadow: 0 0 35px white;
+  background: rgba(76, 201, 240, 0.1);
+  border-color: rgba(76, 201, 240, 0.5);
+  box-shadow: 0 0 22px rgba(76, 201, 240, 0.2);
+  transform: scale(1.06);
+}
+
+.bits-container .active .emoji {
+  filter: none;
 }
 
 .bits-container .active .place {
-  color: black;
+  color: #4cc9f0;
 }
 
 .bits-container .hidden {
@@ -83,21 +141,31 @@
 }
 
 .bits-container button {
-  background: black;
+  background: linear-gradient(135deg, #4361ee, #7209b7);
   color: white;
-  border: 1px solid white;
-  padding: 15px;
-  font-size: 1.1em;
-  border-radius: 20px;
-  margin: 40px;
-  font-family: 'Montserrat';
+  border: none;
+  padding: 0.75em 2em;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 50px;
+  margin: 0.4rem;
+  font-family: 'Space Grotesk', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.35);
+  letter-spacing: 0.02em;
 }
 
 .bits-container button:hover {
-  background: #333;
-  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(67, 97, 238, 0.55);
 }
 
 .bits-container #result {
-  margin: 40px auto;
+  font-size: 1.15rem;
+  font-family: 'Space Mono', monospace;
+  margin: 1rem auto 0;
+  min-height: 2rem;
+  color: #4cc9f0;
+  font-weight: 700;
 }
