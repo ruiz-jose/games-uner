@@ -12,41 +12,40 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 		{
 			"@context": "https://schema.org",
 			"@type": "WebSite",
-			"name": "Bienvenidos a la recolección de juegos para aprender computación",
-			"alternateName": ["Juegos computación", "Bienvenidos a la recolección de juegos para aprender computación", "vtbot"],
+			"name": "Colección de juegos para aprender computación",
+			"alternateName": ["Juegos computación", "Games UNER"],
 			"url": "https://ruiz-jose.github.io/games-uner/"
 		}
 	</script>
 
-	<meta slot="head" property="og:site_name" content="juegos para aprender computación" />
+	<meta slot="head" property="og:site_name" content="Juegos para aprender computación" />
 	<meta
 		slot="head"
 		property="og:title"
-		content="Bienvenidos a la recolección de juegos para aprender computación"
+		content="Bienvenidos a la colección de juegos para aprender computación"
 	/>
 	<meta
 		slot="head"
 		name="description"
-		content="Recolección de juegos para aprender computación"
+		content="Colección de juegos interactivos para aprender computación: binario, decimal y más."
 	/>
 	<meta slot="head" property="twitter:card" content="summary_large_image" />
 
 	<meta slot="head" name="robots" content="index, follow" />
 	<meta slot="head" property="og:type" content="website" />
-	<meta slot="head" property="og:image" content="https://events-3bg.pages.dev/social.png" />
-	<meta slot="head" property="og:url" content="https://events-3bg.pages.dev/" />
+	<meta slot="head" property="og:url" content="https://ruiz-jose.github.io/games-uner/" />
 	<meta
 		slot="head"
 		property="og:description"
-		content="Reusable components, tech demos, and a wealth of in-depth information on Astro's view transitions"
+		content="Colección de juegos interactivos para aprender computación: binario, decimal y más."
 	/>
-	<meta slot="head" property="og:locale" content="en_US" />
+	<meta slot="head" property="og:locale" content="es_AR" />
 
 	<Image id="logo" src={logo} alt="Logo Fcad" transition:animate="slide" transition:name="logo" />
 
 	<h2 class="massive">
-		Bienvenidos a la <br />	
-			<span class="grad">recolección de juegos <Image transition:name="bot" id="bot" src={bot} alt="A bag of tricks" /></span>
+		Bienvenidos a la <br />
+			<span class="grad">colección de juegos <Image transition:name="bot" id="bot" src={bot} alt="Colección de recursos" /></span>
 		<br /> para aprender computación!!
 	</h2>
 </Layout>
@@ -58,10 +57,10 @@ const base = import.meta.env.MODE === 'production' ? '/games-uner' : '';
 <div
 	style="font-size:min(5vw,5vh); color: white; position:fixed; bottom:20vh; transform: rotateZ(90deg); right: 6vw; transform-origin: bottom right; z-index:40"
 >
-	⭐ Star <a
+	⭐ Visitar <a
 		style="text-decoration: dotted underline; color: coral"
-		href="https://github.com/martrapp/astro-vtbot"><code>games-uner</code></a
-	> on GitHub
+		href="https://github.com/ruiz-jose/games-uner"><code>games-uner</code></a
+	> en GitHub
 </div>
 
 <style is:global>

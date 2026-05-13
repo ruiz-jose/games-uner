@@ -21,19 +21,19 @@ if (!title) {
 	<slot name="head" slot="head" />
 	<slot name="head2" slot="head2" />
 	<header>
-		<a href="javascript:history.back()">⮌ back</a>
-		{frontmatter?.overview && <a href={frontmatter.overview}> | Overview</a>} | <a
+		<a href="javascript:history.back()">⮌ Atrás</a>
+		{frontmatter?.overview && <a href={frontmatter.overview}> | Descripción</a>} | <a
 			data-astro-reload
-			href={`${base}/`}>Home</a
+			href={`${base}/`}>Inicio</a
 		>
 	</header>
 	<main>
 		<slot />
 	</main>
 	<footer>
-		<a href="javascript:history.back()">⮌ back</a> |
-		{frontmatter?.overview && <a href={frontmatter.overview}>Overview |</a>}
-		<a href=".">back to top</a>
+		<a href="javascript:history.back()">⮌ Atrás</a> |
+		{frontmatter?.overview && <a href={frontmatter.overview}>Descripción |</a>}
+		<a href=".">Volver arriba</a>
 	</footer>
 </Layout>
 
